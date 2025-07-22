@@ -12,7 +12,7 @@ pygame.init()
 #1. Game Window
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 print("screen blited")
-pygame.display.set_caption("Lily's Adventure")
+pygame.display.set_caption("Muna's Adventure")
 
 def load_assets():
     level1.preload()
