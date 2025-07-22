@@ -196,7 +196,7 @@ def draw(SCREEN, clock):
 
             game_active = collision_sprite(player, obstacle_group)
 
-            if player.sprite.rect.x >= 1300:
+            if player.sprite.rect.x >= 300:
                 level_completed = True
 
         elif level_completed:

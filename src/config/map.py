@@ -18,16 +18,18 @@ class Boundary(Tile):
             return True
 
 def load_map(map):
-    # tiles = []
+    tiles = []
     bound = []
 
     for i in range(len(map)):
         for j in range(len(map[0])):
             # if(map[i][j]=='x'):
                 # tiles.append(Tile(j*TILE_WIDTH, i*TILE_HEIGHT))
-            if(map[i][j]=='b'):
+            if(map[i][j]=='b' or map[i][j]=='r'):
                 # tiles.append(Boundary(j*TILE_WIDTH, i*TILE_HEIGHT))
                 bound.append(Boundary(j*TILE_WIDTH, i*TILE_HEIGHT).place)
+                if map[i][j] == 'r':
+                    tiles.append(Boundary(j*TILE_WIDTH, i*TILE_HEIGHT).place)
     
-    return bound
+    return bound, tiles
             

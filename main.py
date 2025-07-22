@@ -20,9 +20,12 @@ def load_assets():
 def main():
     clock = pygame.time.Clock()
     
-    L1 = False
+    L1, L2, L3 = False, False, False
+    
     level = 1
     load_assets()
+    outro_surface = pygame.image.load('Assets/level3/outroscreen.png').convert_alpha()
+
 
 #2. Game Loop
     run = True
@@ -44,7 +47,7 @@ def main():
                     level = 2
                     continue
             case 2:
-                pygame.draw.rect(SCREEN, (0, 0, 0), pygame.Rect(0,0,SCREEN_WIDTH, SCREEN_HEIGHT))
+                SCREEN.blit(outro_surface, (0, 0))
                 L2=level2.draw(SCREEN, clock)
                 if L2:
                     level = 3
@@ -53,12 +56,11 @@ def main():
                 L3 = level3.draw(SCREEN, clock)
                 if L3:
                     level = 'end'
-                    pygame.draw.rect(SCREEN, (0, 0, 0), pygame.Rect(0,0,SCREEN_WIDTH, SCREEN_HEIGHT))
                     continue
             
-            case _:
-                pygame.draw.rect(SCREEN, (0, 0, 0), pygame.Rect(0,0,SCREEN_WIDTH, SCREEN_HEIGHT))
-                
+            case 'end':
+                print('Over')
+                SCREEN.blit(pygame.Rect(0,0,SCREEN_WIDTH, SCREEN_HEIGHT))
 
     pygame.quit()
 
