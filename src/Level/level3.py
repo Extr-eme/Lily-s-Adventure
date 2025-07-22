@@ -190,7 +190,7 @@ def draw(SCREEN, clock):
                 game_active = False
                 failed_attempt = True
 
-            if player.sprite.rect.x >= 1300:
+            if player.sprite.rect.x >= 300:
                 level_completed = True
                 game_active = False
 

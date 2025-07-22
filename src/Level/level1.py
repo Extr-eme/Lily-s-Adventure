@@ -36,7 +36,7 @@ BULLETS_Y_CHANGE= 0
 BORDER= pygame.Rect(BORDER_POS, 0, 5, SCREEN_HEIGHT)
 BLACK= (0,0,0)
 
-BOUND = load_map(map_sketch.map_level1)
+BOUND, TILE = load_map(map_sketch.map_level1)
 
 character_state=Character_state(BORDER_POS-50, SCREEN_HEIGHT/2 - 50, BOUND)
 
@@ -47,6 +47,8 @@ def preload():
     
     LEVEL1_BG= pygame.image.load(os.path.join('Assets','Background','level1-bg.png')).convert()
     LEVEL1_BG_IMAGE= pygame.transform.scale(LEVEL1_BG, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    ROCK_BG = pygame.image.load(os.path.join('Assets','Background','Rock.png'))
     
     for skeletons in range(NO_of_SKELETONS):
         SKELETONS.append(pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'Background' ,'skeletons.png')).convert_alpha(), (50,70)))
@@ -55,10 +57,15 @@ def preload():
         SKELETONSX_CHANGE.append(300)
         SKELETONSY_CHANGE.append(1)
 
+    ROCK = pygame.Surface((50, len(TILE)* 50))
+    for i, rock in enumerate(TILE):
+        ROCK.blit(ROCK_BG, (0, i* 50))
+
     
     BUFFER = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     BUFFER.blit(LEVEL1_BG_IMAGE, (0, 0))
-    pygame.draw.rect(BUFFER, BLACK, (BORDER_POS, 0, 5, SCREEN_HEIGHT))
+    # pygame.draw.rect(BUFFER, BLACK, (BORDER_POS, 0, 5, SCREEN_HEIGHT))
+    BUFFER.blit(ROCK, (TILE[0].left,TILE[0].top + 15))
     
 def fire_bullets(SCREEN,x,y):
     global BULLETS_STATE
@@ -155,7 +162,7 @@ def draw(SCREEN, keys):
             pygame.display.update()
             pygame.time.delay(5000)
             
-            return False
+            return True  # Yo false garda hang hunxa haryo vane.... ahile next level janxa hare pani
             
             
     bullet_control(SCREEN, keys, POS_X, POS_Y)
